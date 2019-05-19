@@ -156,7 +156,6 @@ html_text = requests.get('https://media.daum.net/politics/').text
 soup = BeautifulSoup(html_text, 'html.parser')
 
 select = soup.select('#cSub > div > div.section_cate.section_headline > div.item_mainnews.\#MCC\#cluster1 > div > div > div > a')
-select.append(soup.select('#cSub > div > div.section_cate.section_headline > div.item_mainnews.\#MCC\#cluster1 > div > strong > a'))
 print(select)
 
 for txt in select:
