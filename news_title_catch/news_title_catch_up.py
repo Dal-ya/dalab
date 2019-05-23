@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # category 딕셔너리
+# https://media.daum.net/{value}/ : all을 제외 모두 공통인 부분
 category = {
     'all' : 'all',
     '사회' : 'society',
@@ -20,7 +21,7 @@ category = {
 }
 
 # 위 category 딕녀너리가 순서대로 나올 수 있게 OrderedDict 사용
-# 파이썬 3.7 부터는 순서대로 나온다고 함
+# 파이썬 3.7 부터는 OrderedDic 하지 않아도 순서대로 나온다고 함
 ordered_category = collections.OrderedDict(category)
 
 # 카테고리별 뉴스 타이틀 가져오기 함수 선언
@@ -29,7 +30,7 @@ def news_title_catch(*category):
     for k in category:
         keyword = k
 
-        # all 인 경우
+        # 전달인자가 'all' 인 경우
         if keyword == 'all' and keyword in ordered_category.keys():
             for key in ordered_category.keys():
                 if key == 'all':
@@ -40,12 +41,12 @@ def news_title_catch(*category):
                 value = ordered_category[key]
                 html_daum_news_crawling(value)
         
-        # all 외 다른 키인 경우
+        # 전달인자가 'all' 외 '사회', '경제' ... 이고 키에 해당하는 경우
         elif keyword in ordered_category.keys():
             print('=== {0} ==='.format(keyword))
             html_daum_news_crawling(ordered_category[keyword])
         
-        # category 딕셔너리 키에 없는 경우
+        # 전달인자가 category 딕셔너리 키에 없는 경우
         else:
             print('없는 카테고리 입니다')
 
