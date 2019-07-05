@@ -1,0 +1,8 @@
+FLASK_APP=app.py FLASK_DEBUG=1 flask run
+
+FLASK_ENV=development FKAS_APP=app.py flask run
+
+
+
+* flask docs
+http://flask.pocoo.org/docs/1.0/quickstart/#routing
