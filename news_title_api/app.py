@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from news_catch import news_title_catch
+from real_search import *
 
 
 app = Flask(__name__)
@@ -19,6 +20,20 @@ def duam_news_main():
 def daum_news(category):
     title  = news_title_catch(category)
     return jsonify(title)
+
+
+@app.route('/daum-rt', methods=['GET'])
+def daum_rt():
+    daum_realtime = daum_realtime_search_crawling()
+    print(daum_realtime)
+    return jsonify(daum_realtime)
+
+
+@app.route('/naver-rt', methods=['GET'])
+def naver_rt():
+    naver_realtime = naver_realtime_search_crawling()
+    print(naver_realtime)
+    return jsonify(naver_realtime)
 
 
 app.run(host='0.0.0.0')
