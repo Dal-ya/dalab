@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
 from news_catch import news_title_catch
 from real_search import *
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 
+CORS(app)
 
 @app.route('/')
 def home():
@@ -34,6 +36,7 @@ def naver_rt():
     naver_realtime = naver_realtime_search_crawling()
     print(naver_realtime)
     return jsonify(naver_realtime)
+
 
 
 app.run(host='0.0.0.0')
