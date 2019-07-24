@@ -6,3 +6,18 @@ FLASK_ENV=development FKAS_APP=app.py flask run
 
 * flask docs
 http://flask.pocoo.org/docs/1.0/quickstart/#routing
+
+
+
+mac
+$ source ~/.bash_profile
+$ conda env list
+$ source activate [name]
+
+
+
+
+git
+
+$ git add .
+$ git push

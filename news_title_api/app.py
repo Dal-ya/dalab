@@ -10,7 +10,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return '환영합니다, /daum-news 로 이동해보세요!'
+    return '환영합니다, /daum-news or /duam-rt, naver-rt 로 이동해보세요!'
 
 
 @app.route('/daum-news', methods=['GET'])
@@ -36,7 +36,6 @@ def naver_rt():
     naver_realtime = naver_realtime_search_crawling()
     print(naver_realtime)
     return jsonify(naver_realtime)
-
 
 
 app.run(host='0.0.0.0')
