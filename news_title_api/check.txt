@@ -21,3 +21,27 @@ git
 
 $ git add .
 $ git push
+
+
+
+
+table 생성하기
+create table users(
+    id int not null auto_increment,
+    name varchar(255) not null,
+    hashed_password varchar(255) not null,
+    code varchar(500) not null,
+    created_at timestamp not null default current_timestamp,
+    primary key (id),
+    unique key name (name)
+);
+
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5000, debug=True)
+
+
+if __name__=='__main__':
+    app = create_app()
+    app.run()
