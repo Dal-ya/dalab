@@ -150,7 +150,7 @@ def create_app(test_config = None):
 
     @app.route('/')
     def home():
-        return '환영합니다, /daum-news or /duam-rt, naver-rt 로 이동해보세요!'
+        return '환영합니다, /daum-news or /duam-rt, naver-rt (로그인 필요)로 이동해보세요!'
 
 
     @app.route('/daum-news', methods=['GET'])
@@ -168,14 +168,15 @@ def create_app(test_config = None):
     @login_required
     def daum_rt():
         daum_realtime = daum_realtime_search_crawling()
-        print(daum_realtime)
+        # print(daum_realtime)
         return jsonify(daum_realtime)
 
 
     @app.route('/naver-rt', methods=['GET'])
+    @login_required
     def naver_rt():
         naver_realtime = naver_realtime_search_crawling()
-        print(naver_realtime)
+        # print(naver_realtime)
         return jsonify(naver_realtime)
 
 
