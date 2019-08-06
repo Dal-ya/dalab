@@ -111,41 +111,47 @@ def create_app(test_config = None):
 
     @app.route('/sign-up', methods=['POST'])
     def sign_up():
-        new_user = request.json
-        if new_user['code'] == app.config['CODE']:
-            new_user['password'] = bcrypt.hashpw(
-                new_user['password'].encode('UTF-8'),
-                bcrypt.gensalt()
-            )
+        try:
+            new_user = request.json
+            if new_user['code'] == app.config['CODE']:
+                new_user['password'] = bcrypt.hashpw(
+                    new_user['password'].encode('UTF-8'),
+                    bcrypt.gensalt()
+                )
 
-            new_user_id = insert_user(new_user)
-            new_user = get_user(new_user_id)
+                new_user_id = insert_user(new_user)
+                new_user = get_user(new_user_id)
 
-            return jsonify(new_user)
-        else:
-            return 'WRONG', 401
+                return jsonify(new_user)
+            else:
+                return 'WRONG', 401
+        except:
+            return 'sorry, bad request or logic error', 400
 
 
     @app.route('/login', methods=['POST'])
     def login():
-        credential = request.json
-        name = credential['name']
-        password = credential['password']
-        user_credential = get_user_id_and_password(name)
+        try:
+            credential = request.json
+            name = credential['name']
+            password = credential['password']
+            user_credential = get_user_id_and_password(name)
 
-        if user_credential and bcrypt.checkpw(password.encode('UTF-8'), user_credential['hashed_password'].encode('UTF-8')):
-            user_id = user_credential['id']
-            payload = {
-                'user_id': user_id,
-                'exp': datetime.utcnow() + timedelta(seconds = 60 * 60 * 24)
-            }
-            token = jwt.encode(payload, app.config['JWT_SECRET_KEY'], 'HS256') 
+            if user_credential and bcrypt.checkpw(password.encode('UTF-8'), user_credential['hashed_password'].encode('UTF-8')):
+                user_id = user_credential['id']
+                payload = {
+                    'user_id': user_id,
+                    'exp': datetime.utcnow() + timedelta(seconds = 60 * 60 * 24)
+                }
+                token = jwt.encode(payload, app.config['JWT_SECRET_KEY'], 'HS256') 
 
-            return jsonify({        
-                'access_token' : token.decode('UTF-8')
-            })
-        else:
-            return '', 401
+                return jsonify({        
+                    'access_token' : token.decode('UTF-8')
+                })
+            else:
+                return '', 401
+        except:
+            return 'sorry, bad request or logic error', 400
 
 
     @app.route('/')

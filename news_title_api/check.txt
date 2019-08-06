@@ -16,14 +16,27 @@ $ source activate [name]
 
 
 
-
 git
-
 $ git add .
 $ git push
 
 
+우분투 서버에서 실행시키기
+세션이 종료되어도 계속 실행
+$ nohup python3 app.py runserver —host=0.0.0.0
 
+$ python3 app.py runserver —host=0.0.0.0
+
+
+
+mysql 접속 방법
+$ mysql -u root -p 
+
+mysql 재실행 방법
+$ sudo service mysql restart
+
+database: news_api
+host: 0.0.0.0
 
 table 생성하기
 create table users(
@@ -45,3 +58,18 @@ if __name__ == '__main__':
 if __name__=='__main__':
     app = create_app()
     app.run()
+
+
+
+flask 서버 종료
+$ ps aux
+
+ 플라스크 서버 pid 확인 후
+$ kill processNumber
+
+or
+
+$ kill -9 processNumber 
+
+
+
