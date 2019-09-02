@@ -3,7 +3,6 @@
 
 const arr = [10, 20, 30, 40, 50];
 
-
 // reduce
 const reduceResultOne = arr.reduce(function(acc, cur, idx) {
 	console.log(`acc: ${acc}, cur: ${cur}, idx: ${idx}`);
@@ -11,6 +10,14 @@ const reduceResultOne = arr.reduce(function(acc, cur, idx) {
 }, 0);
 
 console.log(reduceResultOne);
+/* 
+acc: 0, cur: 10, idx: 0
+acc: 10, cur: 20, idx: 1
+acc: 30, cur: 30, idx: 2
+acc: 60, cur: 40, idx: 3
+acc: 100, cur: 50, idx: 4
+150
+*/
 
 
 const reduceResultTwo = arr.reduce((acc, cur, idx) => {
@@ -19,6 +26,7 @@ const reduceResultTwo = arr.reduce((acc, cur, idx) => {
 }, []);
 
 console.log(reduceResultTwo);
+// [ 20, 40, 60, 80, 100 ]
 
 
 const resultReduceRight = arr.reduceRight((acc, cur, idx) => {
@@ -27,12 +35,21 @@ const resultReduceRight = arr.reduceRight((acc, cur, idx) => {
 }, 0);
 
 console.log(resultReduceRight);
+/*
+acc: 0, cur: 50, idx: 4
+acc: 50, cur: 40, idx: 3
+acc: 90, cur: 30, idx: 2
+acc: 120, cur: 20, idx: 1
+acc: 140, cur: 10, idx: 0
+150
+*/
 
 
 const reducer = (acc, cur) => acc - cur;
 const reducerResult = arr.reduce(reducer);
 
 console.log(reducerResult);
+// -130
 
 
 const findMax = arr.reduce((acc, cur) => {
@@ -43,6 +60,8 @@ const findMax = arr.reduce((acc, cur) => {
 });
 
 console.log('findMax: ', findMax);
+// findMax:  50
+
 
 
 // map
@@ -50,7 +69,7 @@ const mapResultOne = arr.map(function(element) {
 	return element;
 });
 
-console.log(mapResultOne);
+console.log(mapResultOne); // [ 10, 20, 30, 40, 50 ]
 console.log(mapResultOne === arr);  // false
 
 
@@ -59,6 +78,8 @@ const mapResultTwo = arr.map(element => {
 });
 
 console.log(mapResultTwo);
+// [ 20, 40, 60, 80, 100 ]
+
 
 
 //filter
@@ -67,3 +88,4 @@ const filterResult = arr.filter(element => {
 });
 
 console.log(filterResult)
+// [ 30, 40, 50 ]
