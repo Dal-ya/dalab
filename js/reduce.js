@@ -3,6 +3,15 @@
 
 const arr = [10, 20, 30, 40, 50];
 
+// forEach
+const newArr = [];
+const resultForEach = arr.forEach(n => {
+  return newArr.push(n*10);
+});
+
+console.log(newArr); // [ 100, 200, 300, 400, 500 ]
+
+
 // reduce
 const reduceResultOne = arr.reduce(function(acc, cur, idx) {
 	console.log(`acc: ${acc}, cur: ${cur}, idx: ${idx}`);
@@ -26,6 +35,16 @@ const reduceResultTwo = arr.reduce((acc, cur, idx) => {
 }, []);
 
 console.log(reduceResultTwo);
+// [ 20, 40, 60, 80, 100 ]
+
+// acc.push > [...acc, newElement]
+let newElement = 0;
+const arr2 = arr.reduce((acc, cur) => {
+  newElement = cur * 2;
+  return [...acc, newElement];
+}, []);
+
+console.log(arr2); 
 // [ 20, 40, 60, 80, 100 ]
 
 
