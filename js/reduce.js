@@ -47,6 +47,14 @@ const arr2 = arr.reduce((acc, cur) => {
 console.log(arr2); 
 // [ 20, 40, 60, 80, 100 ]
 
+//재수정
+const modiArr2 = arr.reduce((acc, cur) => {
+	return [...acc, cur * 2];
+}, []);
+
+console.log('test', modiArr2);
+// [ 20, 40, 60, 80, 100 ]
+
 
 const resultReduceRight = arr.reduceRight((acc, cur, idx) => {
 	console.log(`acc: ${acc}, cur: ${cur}, idx: ${idx}`);
