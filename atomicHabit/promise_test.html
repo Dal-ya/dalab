@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<style>
+		#is_pass {
+			color: darkviolet;
+			font-weight: bold;
+		}
+	</style>
+	<body>
+		<fieldset>
+			<legend>SCORE</legend>
+			<label for="first_score">First Score: </label>
+			<input type="text" id="first_score"><br><br>
+			<label for="second_score">Second Score</label>
+			<input type="text" id="second_score">
+		</fieldset>
+		<button onclick="outputScore()" id="myBtn">Click</button>
+		<hr>
+		<p>SUM SCORE</p>
+		<p id="sum_score">score</p>
+		<hr>
+		<p>IS PASS(140)</p>
+		<p id="is_pass">ispass</p>
+		
+		<!-- script -->
+		<script>
+			function outputScore() {
+				const firstScore = Number(document.getElementById('first_score').value);
+				const secondScore = Number(document.getElementById('second_score').value);
+				const sumScore = firstScore + secondScore;
+
+				document.getElementById('sum_score').innerHTML = sumScore;
+				console.log(sumScore);
+
+				const passScore = new Promise((resolve, reject) => {
+					if(sumScore >= 140 && sumScore <= 200) {
+						resolve('PASS');
+					} else {
+						reject('RETRY or WRONG DATA');
+					}
+				});
+
+				passScore
+					.then((pass_message) => {
+						document.getElementById('is_pass').innerHTML = pass_message;
+					})
+					.catch((pass_message) => {
+						document.getElementById('is_pass').innerHTML = pass_message;
+					});
+			}
+		</script>
+	</body>
+</html>
