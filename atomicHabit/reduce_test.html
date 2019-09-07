@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+    #result {
+      font-weight: bold;
+      color: brown;
+      border: dashed thin saddlebrown;
+      padding: 10px;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <h2>reduce example</h2>
+    <p id="arr">arr = [10, 20, 30, 40, 50]</p>
+    <span>곱하기: <input type="text" id="input_num"></span>
+    <br>
+    <button onclick="reduceTest()" id="multiplyBtn">곱하기!</button>
+    <hr>
+    <h3>결과</h3>
+    <p id="result">result</p>
+
+    <script>
+      function reduceTest() {
+        const arr = [10, 20, 30, 40, 50];
+        const inputNum = document.getElementById('input_num').value;  
+
+        const reduceResult = arr.reduce((acc, cur) => {
+          return [...acc, cur * inputNum];
+        }, []);
+
+        document.getElementById('result').innerHTML = reduceResult;
+        console.log(reduceResult);
+      }
+    </script>
+  </body>
+</html>
