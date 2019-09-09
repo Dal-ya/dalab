@@ -1,0 +1,61 @@
+<!-- https://www.youtube.com/watch?time_continue=766&v=S4BN1tZmmWw -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      h2[id *= "title"] {
+        border: dotted 1px;
+      }
+
+      .clicked {
+        background-color: #74b9ff;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Click Box</h2>
+    <h2 id="title" class="test">className</h2>
+    <h2 id="title_second" class="test">classList add remove</h2>
+    <h2 id="title_third" class="test">class toggle</h2>
+
+    <script>
+      const classNameVar = document.querySelector('#title');
+      const classListVar = document.querySelector('#title_second');
+      const toggleVar = document.querySelector('#title_third');
+
+      const CLASS_STYLE = 'clicked';
+
+      // className
+      classNameVar.addEventListener('click', function() {
+        if(classNameVar.className !== CLASS_STYLE) {
+          return classNameVar.className = CLASS_STYLE;
+        }
+        
+        if(classNameVar.className === CLASS_STYLE) {
+          return classNameVar.className = '';
+        }
+      });
+
+      // classList add remove
+      classListVar.addEventListener('click', function() {
+        const hascClassClicked = classListVar.classList.contains(CLASS_STYLE);
+        if(!hascClassClicked) {
+          return classListVar.classList.add(CLASS_STYLE);
+        }
+
+        if(hascClassClicked) {
+          return classListVar.classList.remove(CLASS_STYLE);
+        }
+      });
+
+      // classList toggle
+     toggleVar.addEventListener('click', function() {
+       toggleVar.classList.toggle(CLASS_STYLE);
+      });
+      
+    </script>
+  </body>
+</html>
