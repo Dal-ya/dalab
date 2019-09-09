@@ -24,3 +24,10 @@ setTimeoutPromise(1)
   .then((result)=>{
     console.log(result);
   });
+
+/*
+1 '2019-09-08T15:26:41.036Z'
+2 '2019-09-08T15:26:42.047Z'
+3 '2019-09-08T15:26:43.053Z'
+promise~@.@
+*/
