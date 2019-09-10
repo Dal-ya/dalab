@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p>form test</p>
+    <form action="" method="POST" class="form">
+      <input type="text">
+    </form>
+
+    <p id="user_name">username</p>
+
+    <script> 
+      const form = document.querySelector('.form');
+      const input = document.querySelector('input');
+      const userName = document.getElementById('user_name');
+      let inputValue = '';
+
+      function eventTest(event) {
+        event.preventDefault();
+        inputValue = input.value;
+        console.log(inputValue);
+        userName.innerText = `hello~ ${inputValue}`;  
+      }
+
+      form.addEventListener('submit', eventTest);
+        
+    </script>
+  </body>
+</html>
