@@ -31,3 +31,15 @@ setTimeoutPromise(1)
 3 '2019-09-08T15:26:43.053Z'
 promise~@.@
 */
+
+
+// callback 으로도 동기 가능.
+setTimeout(function() {
+  console.log('first', new Date().getSeconds());
+  setTimeout(function() {
+    console.log('second', new Date().getSeconds());
+    setTimeout(function() {
+      console.log('third', new Date().getSeconds());
+    }, 3000);    
+  }, 1000);
+}, 1000);
