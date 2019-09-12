@@ -36,6 +36,9 @@ promise~@.@
 
 
 
+
+
+// 비동기 방식
 console.log('start', new Date().getSeconds());
 
 setTimeout(function() {
@@ -63,7 +66,7 @@ end 4
 
 
 
-
+// 콜백으로 동기화
 console.log('start', new Date().getSeconds());
 
 setTimeout(function() {
@@ -84,4 +87,54 @@ end 14
 1sec 15
 2sec 17
 3sec 20
+*/
+
+
+
+
+
+
+
+
+
+// Promise를 리턴하는 함수
+function delay(sec) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(new Date().getSeconds() + '초');
+    }, sec * 1000);
+  });
+}
+
+// 일반함수
+function sayHello() {
+  console.log('hello~ ');
+}
+
+// async 함수 
+async function asyncTest() {
+  console.log('start ' + new Date().getSeconds() + '초');
+
+  const FirstDelay = await delay(2);
+  console.log(FirstDelay);
+
+  sayHello();  
+
+  const SecondDelay = await delay(2);
+  console.log(SecondDelay);
+
+  return 'end @.@';
+}
+
+
+asyncTest().then((result)=>{
+  console.log(result);
+});
+
+/*
+start 12초
+14초
+hello~ 
+16초
+end @.@
 */
