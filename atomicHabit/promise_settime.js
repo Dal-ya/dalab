@@ -33,13 +33,55 @@ promise~@.@
 */
 
 
-// callback 으로도 동기 가능.
+
+
+
+console.log('start', new Date().getSeconds());
+
 setTimeout(function() {
-  console.log('first', new Date().getSeconds());
-  setTimeout(function() {
-    console.log('second', new Date().getSeconds());
-    setTimeout(function() {
-      console.log('third', new Date().getSeconds());
-    }, 3000);    
-  }, 1000);
+  console.log('3sec', new Date().getSeconds());
+}, 3000);
+
+setTimeout(function() {
+  console.log('1sec', new Date().getSeconds());
 }, 1000);
+
+setTimeout(function() {
+  console.log('2sec', new Date().getSeconds());
+}, 2000);
+
+console.log('end', new Date().getSeconds());
+
+/* 
+ex)
+start 4
+end 4
+1sec 5
+2sec 6
+3sec 7
+*/
+
+
+
+
+console.log('start', new Date().getSeconds());
+
+setTimeout(function() {
+  console.log('1sec', new Date().getSeconds());
+  setTimeout(function() {
+    console.log('2sec', new Date().getSeconds());
+    setTimeout(function() {
+      console.log('3sec', new Date().getSeconds());
+    }, 3000);    
+  }, 2000);
+}, 1000);
+
+console.log('end', new Date().getSeconds());
+/*  
+ex)
+start 14
+end 14
+1sec 15
+2sec 17
+3sec 20
+*/
