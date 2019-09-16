@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    0916
+    <h2>Book Note</h2>
+    <form class="book_form" action="" method="POST">
+      <fieldset>
+        <legend>NOTE CARD</legend>
+        <div>
+          <label for="book_name">책이름 : 
+            <input id="book_name" type="text" name="book_name" placeholder="책이름" required>
+          </label>
+        </div>
+        <div>
+          <label for="book_status">독서상태 : 
+            <select id="book_status" name="book_status" >
+              <option value="completion">완독</option>
+              <option value="reding">읽는중</option>
+              <option value="rereading">다시읽기</option>
+              <option value="standby">대기</option>
+              <option value="picking">발췌독</option>
+              <option value="skimming">훑어보기</option>
+            </select> 
+          </label>
+        </div>
+        <div>
+          <label for="book_memo">메모 : 
+            <textarea id="book_memo" name="book_memo" cols="30" rows="5" wrap="hard"></textarea>
+          </label>
+        </div>
+        <div>
+          <label for="book_date"> 날짜 : 
+            <input id="book_date" type="date" name="book_date" required>
+          </label>
+        </div>
+      </fieldset>
+      <button type="submit">작성하기</button>
+    </form>
+    <hr>
+    <h2>List</h2>
+    <div class="table"> 
+      <div class="thead">
+        <div class="row">
+          <span class="cell col1">번호</span>
+          <span class="cell col2">책이름</span>
+          <span class="cell col3">독서상태</span>
+          <span class="cell col4">메모</span>
+          <span class="cell col5">날짜</span>
+        </div>    
+      </div>
+      <div class="row book_list">    
+      </div>
+    </div>
+
+    <script src="index.js"></script> 
+  </body>
+</html>
