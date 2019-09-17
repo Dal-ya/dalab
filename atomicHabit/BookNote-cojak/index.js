@@ -1,17 +1,16 @@
 const bookForm = document.querySelector('.book_form');
 const bookList = document.querySelector('.book_list');
 
-const BOOK_NOTE_LIST_STORAGE = 'bookNoteListStorage';
-let bookNoteListStorageArr = [];
+const BOOK_NOTE_STORAGE = 'bookNoteStorage';
+let bookNoteStorageArr = [];
 
 
-function setBookNoteList() {
-  localStorage.setItem(BOOK_NOTE_LIST_STORAGE, JSON.stringify(bookNoteListStorageArr));
+function setBookNote() {
+  localStorage.setItem(BOOK_NOTE_STORAGE, JSON.stringify(bookNoteStorageArr));
 }
 
 
-
-function writeBookNoteList(event) {
+function writeBookNote(event) {
   const bookName = document.getElementById('book_name');
   const bookStatus = document.getElementById('book_status');
   const bookMemo = document.getElementById('book_memo');
@@ -24,36 +23,47 @@ function writeBookNoteList(event) {
       event.preventDefault();
     } else {
       const bookNoteValueObj = {
-        id: bookNoteListStorageArr.length + 1,
+        id: bookNoteStorageArr.length + 1,
         bookNameValue: bookName.value,
         bookStatusTextValue: bookStatusText,
         bookMemoValue: bookMemo.value,
         bookDateValue: bookDate.value
       }
-      bookNoteListStorageArr.push(bookNoteValueObj);
-      setBookNoteList(); 
+      bookNoteStorageArr.push(bookNoteValueObj);
+      setBookNote(); 
     }
   } 
 }
 
 
-function viewBookNoteList() {
+function viewBookNote() {
+  const spanID = document.createElement('span');
+  const spanBookName = document.createElement('span');
+  const spanBookStatus = document.createElement('span');
+  const spanBookMemo = document.createElement('span');
+  const spanBookDate = document.createElement('span');
   
+  let []
+
+  spanID.className = 'cell col1';
+  spanID.innerText = 'test';
+  document.body.appendChild(spanID);
 }
 
 
-function getBookNoteList() {
-  const getBookNoteList = localStorage.getItem(BOOK_NOTE_LIST_STORAGE);
-  if(getBookNoteList !== null) {
-    const parseGetBookNoteList  = JSON.parse(getBookNoteList);
-    bookNoteListStorageArr = parseGetBookNoteList;
+function getBookNote() {
+  const getBookNote = localStorage.getItem(BOOK_NOTE_STORAGE);
+  if(getBookNote !== null) {
+    const parseGetBookNote  = JSON.parse(getBookNote);
+    bookNoteStorageArr = parseGetBookNote;
   }
 }
 
 
 function init() {
-  getBookNoteList();
-  bookForm.addEventListener('submit', writeBookNoteList);
+  getBookNote();
+  bookForm.addEventListener('submit', writeBookNote);
+  viewBookNote();
 }
 
 
