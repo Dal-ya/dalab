@@ -11,7 +11,7 @@ function setBookNoteList() {
 
 
 
-function handleSubmit(event) {
+function writeBookNoteList(event) {
   const bookName = document.getElementById('book_name');
   const bookStatus = document.getElementById('book_status');
   const bookMemo = document.getElementById('book_memo');
@@ -19,12 +19,10 @@ function handleSubmit(event) {
   const bookStatusOptionsIndex = bookStatus.options.selectedIndex;
   const bookStatusText = bookStatus.options[bookStatusOptionsIndex].text;
   
-
   if(bookName.value !== ''){
     if(confirm('정말 작성하시겠습니까?') === false){
       event.preventDefault();
     } else {
-      //event.preventDefault();
       const bookNoteValueObj = {
         id: bookNoteListStorageArr.length + 1,
         bookNameValue: bookName.value,
@@ -39,7 +37,7 @@ function handleSubmit(event) {
 }
 
 
-function viewList() {
+function viewBookNoteList() {
   
 }
 
@@ -55,7 +53,7 @@ function getBookNoteList() {
 
 function init() {
   getBookNoteList();
-  bookForm.addEventListener('submit', handleSubmit);
+  bookForm.addEventListener('submit', writeBookNoteList);
 }
 
 
