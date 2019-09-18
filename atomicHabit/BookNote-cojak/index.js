@@ -10,6 +10,16 @@ function setBookNote() {
 }
 
 
+function getBookNote() {
+  const getBookNote = localStorage.getItem(BOOK_NOTE_STORAGE);
+  if(getBookNote !== null) {
+    const parseGetBookNote  = JSON.parse(getBookNote);
+    bookNoteStorageArr = parseGetBookNote;
+    viewBookNote();
+  }
+}
+
+
 function writeBookNote(event) {
   const bookName = document.getElementById('book_name');
   const bookStatus = document.getElementById('book_status');
@@ -79,14 +89,10 @@ function viewBookNote() {
 }
 
 
-function getBookNote() {
-  const getBookNote = localStorage.getItem(BOOK_NOTE_STORAGE);
-  if(getBookNote !== null) {
-    const parseGetBookNote  = JSON.parse(getBookNote);
-    bookNoteStorageArr = parseGetBookNote;
-    viewBookNote();
-  }
+function updateList() {
+
 }
+
 
 function deleteList(event) {
   const btn = event.target;
@@ -107,9 +113,3 @@ function init() {
 
 
 init();
-
-
-
-
-
-
