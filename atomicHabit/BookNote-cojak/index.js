@@ -48,6 +48,7 @@ function viewBookNote() {
     const spanBookStatus = document.createElement('span');
     const spanBookMemo = document.createElement('span');
     const spanBookDate = document.createElement('span');
+    const delBtn = document.createElement('button');
 
     divRow.className = 'row';
     spanID.className = 'cell col1';
@@ -56,11 +57,14 @@ function viewBookNote() {
     spanBookMemo.className = 'cell col4';
     spanBookDate.className = 'cell col5';
 
+    divRow.id = list.id;
+
     spanID.innerText = list.id;
     spanBookName.innerText = list.bookNameValue;
     spanBookStatus.innerText = list.bookStatusValue;
     spanBookMemo.innerText = list.bookMemoValue;
     spanBookDate.innerText = list.bookDateValue;
+    delBtn.innerText = 'DEL';
 
     bookList.appendChild(divRow);
     divRow.appendChild(spanID);
@@ -68,6 +72,9 @@ function viewBookNote() {
     divRow.appendChild(spanBookStatus);
     divRow.appendChild(spanBookMemo);
     divRow.appendChild(spanBookDate);
+    divRow.appendChild(delBtn);
+
+    delBtn.addEventListener('click', deleteList);
   });
 }
 
@@ -81,9 +88,17 @@ function getBookNote() {
   }
 }
 
-function delList() {
-
+function deleteList(event) {
+  const btn = event.target;
+  const div = btn.parentNode;
+  bookList.removeChild(div);
+  const filterBookNote =  bookNoteStorageArr.filter(list => {
+    return list.id !== parseInt(div.id);
+  });
+  bookNoteStorageArr = filterBookNote;
+  setBookNote();
 }
+
 
 function init() {
   getBookNote();
