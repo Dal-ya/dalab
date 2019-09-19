@@ -95,14 +95,18 @@ function updateList() {
 
 
 function deleteList(event) {
-  const btn = event.target;
-  const div = btn.parentNode;
-  bookList.removeChild(div);
-  const filterBookNote =  bookNoteStorageArr.filter(list => {
-    return list.id !== parseInt(div.id);
-  });
-  bookNoteStorageArr = filterBookNote;
-  setBookNote();
+  if(confirm('정말 삭제하시겠습니까?') === false) {
+    event.preventDefault();
+  } else {
+    const btn = event.target;
+    const div = btn.parentNode;
+    bookList.removeChild(div);
+    const filterBookNote =  bookNoteStorageArr.filter(list => {
+      return list.id !== parseInt(div.id);
+    });
+    bookNoteStorageArr = filterBookNote;
+    setBookNote();
+  }
 }
 
 
