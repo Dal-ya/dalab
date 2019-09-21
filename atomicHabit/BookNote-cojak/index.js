@@ -15,7 +15,6 @@ function getBookNote() {
   if(getBookNote !== null) {
     const parseGetBookNote  = JSON.parse(getBookNote);
     bookNoteStorageArr = parseGetBookNote;
-    viewBookNote();
   }
 }
 
@@ -59,6 +58,7 @@ function viewBookNote() {
     const spanBookMemo = document.createElement('span');
     const spanBookDate = document.createElement('span');
     const delBtn = document.createElement('button');
+    const updateBtn = document.createElement('button');
 
     divRow.className = 'row';
     spanID.className = 'cell col1';
@@ -74,7 +74,8 @@ function viewBookNote() {
     spanBookStatus.innerText = list.bookStatusValue;
     spanBookMemo.innerText = list.bookMemoValue;
     spanBookDate.innerText = list.bookDateValue;
-    delBtn.innerText = 'DEL';
+    delBtn.innerText = '삭제';
+    updateBtn.innerText = '수정'
 
     bookList.appendChild(divRow);
     divRow.appendChild(spanID);
@@ -83,14 +84,16 @@ function viewBookNote() {
     divRow.appendChild(spanBookMemo);
     divRow.appendChild(spanBookDate);
     divRow.appendChild(delBtn);
+    divRow.appendChild(updateBtn);    
 
     delBtn.addEventListener('click', deleteList);
+    updateBtn.addEventListener('click', updateList);
   });
 }
 
 
 function updateList() {
-
+  
 }
 
 
@@ -112,6 +115,7 @@ function deleteList(event) {
 
 function init() {
   getBookNote();
+  viewBookNote();
   bookForm.addEventListener('submit', writeBookNote);
 }
 
