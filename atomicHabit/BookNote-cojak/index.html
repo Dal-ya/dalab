@@ -53,6 +53,51 @@
       </div>      
     </div>
 
+    <!-- 수정창 -->
+    <div class="update_box" id="open">
+      <div>
+        <form>
+          <fieldset>
+          <legend>NOTE CARD 수정</legend>
+            <div>
+              <label for="update_book_id">번호: 
+                <input id="update_book_id" type="text" disabled>
+              </label>
+            </div>
+            <div>
+              <label for="update_book_name">책이름 : 
+                <input id="update_book_name" type="text" name="update_book_name" maxlength="70" placeholder="책이름" required>
+              </label>
+            </div>
+            <div>
+              <label for="update_book_status">독서상태 : 
+                <select id="update_book_status" name="update_book_status" >
+                  <option value="completion">완독</option>
+                  <option value="reding">읽는중</option>
+                  <option value="rereading">다시읽기</option>
+                  <option value="standby">대기</option>
+                  <option value="picking">발췌독</option>
+                  <option value="skimming">훑어보기</option>
+                </select> 
+              </label>
+            </div>
+            <div>
+              <label for="update_book_memo">메모 : <br>
+                <textarea id="update_book_memo" name="update_book_memo" cols="30" rows="5" wrap="hard" maxlength="150" placeholder="150자"></textarea>
+              </label>
+            </div>
+            <div>
+              <label for="update_book_date"> 날짜 : 
+                <input id="update_book_date" type="date" name="update_book_date" required>
+              </label>
+            </div>
+          </fieldset>
+          <button type="submit">수정하기</button>  
+        </form>
+        <button id="update_close_btn">취소</button>
+      </div>  
+    </div>
+
     <script src="index.js"></script> 
   </body>
 </html>

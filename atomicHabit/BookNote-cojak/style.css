@@ -25,6 +25,33 @@
 
 
 /* 
-
+수정 모달창
 */
 
+.update_box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(23, 22, 22, 0.9); 
+  opacity: 0;
+  pointer-events: none;
+}
+
+.update_box:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.update_box > div {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 45%;
+  height: 40%;
+  padding: 15px;
+  background-color: rgb(235, 233, 233);
+  border: solid 2px rgb(235, 233, 233);
+  overflow: auto;
+}

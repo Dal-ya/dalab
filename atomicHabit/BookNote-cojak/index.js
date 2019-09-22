@@ -87,13 +87,28 @@ function viewBookNote() {
     divRow.appendChild(updateBtn);    
 
     delBtn.addEventListener('click', deleteList);
-    updateBtn.addEventListener('click', updateList);
+    updateBtn.addEventListener('click', updateBookNote);
   });
 }
 
 
-function updateList() {
+function updateBookNote() {
+  location.href = '#open';
+  const btn = event.target;
+  const div = btn.parentNode;
+  const divID = div.id;
   
+
+  const updateCloseBtn = document.getElementById('update_close_btn');
+  updateCloseBtn.addEventListener('click', () => location.href = '#close');
+
+  // bookNoteStorageArr.forEach(obj => {
+  //   if(obj.id === 2){
+  //         bookNoteStorageArr[1].bookNameValue = 'hello';
+  //     bookNoteStorageArr[1].bookStatusValue = '읽는중';
+  //     }
+  // });
+  // setBookNote();
 }
 
 
