@@ -27,7 +27,7 @@ function writeBookNote(event) {
   
   // bookStatus 의 value가 아닌 text 가져오기.
   const bookStatusOptionsIndex = bookStatus.options.selectedIndex;
-  const bookStatusText = bookStatus.options[bookStatusOptionsIndex].text;
+  const bookStatusText = bookStatus.options[bookStatusOptionsIndex].textContent;
   
   if(bookName.value !== ''){
     if(confirm('정말 작성하시겠습니까?') === false){
@@ -92,15 +92,56 @@ function viewBookNote() {
 }
 
 
-function updateBookNote() {
+function updateBookNote(event) {
   location.href = '#open';
+
   const btn = event.target;
   const div = btn.parentNode;
-  const divID = div.id;
-  
 
+  const updateBookForm = document.querySelector('.update_book_form');
   const updateCloseBtn = document.getElementById('update_close_btn');
+  const upBookID = document.getElementById('update_book_id');
+  const upBookName = document.getElementById('update_book_name');
+  const upBookStatus = document.getElementById('update_book_status');
+  const upBookMemo = document.getElementById('update_book_memo');
+  const upBookDate = document.getElementById('update_book_date');
+  
+  const statusObj = {
+    완독: 'completion',
+    읽는중: 'reding',
+    다시읽기: 'rereading',
+    대기: 'standby',
+    발췌독: 'picking',
+    훑어보기: 'skimming' 
+  };
+
+  let statusValue = '';
+  for(let prop in statusObj) {
+    if(prop === div.childNodes[2].textContent) {
+      statusValue = statusObj[prop];
+    }
+  }
+
+  upBookID.value = div.id;
+  upBookName.value = div.childNodes[1].textContent;
+  upBookStatus.value = statusValue;
+  upBookMemo.value = div.childNodes[3].textContent;
+  upBookDate.value = div.childNodes[4].textContent;
+
   updateCloseBtn.addEventListener('click', () => location.href = '#close');
+  updateBookForm.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    bookNoteStorageArr.forEach(list => {
+      if(list.id === parseInt(div.id)) {
+        bookNoteStorageArr[parseInt(div.id)-1].bookNameValue = upBookName.value;
+        //bookstatus 한글로 나올 수 있게 수정하기
+        bookNoteStorageArr[parseInt(div.id)-1].bookStatusValue = upBookStatus.value;
+        bookNoteStorageArr[parseInt(div.id)-1].booMemoValue = upBookMemo.value;
+        bookNoteStorageArr[parseInt(div.id)-1].bookDateValue = upBookDate.value;
+      }
+    });
+    setBookNote();
+  });
 
   // bookNoteStorageArr.forEach(obj => {
   //   if(obj.id === 2){
