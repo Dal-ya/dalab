@@ -130,20 +130,24 @@ function updateBookNote(event) {
 
   updateCloseBtn.addEventListener('click', () => location.href = '#close');
 
-  updateBookForm.addEventListener('submit', ()=>{
-    const upBookStatusOptionsIndex = upBookStatus.options.selectedIndex;
-    const upBookStatusText = upBookStatus.options[upBookStatusOptionsIndex].textContent;
+  updateBookForm.addEventListener('submit', (event)=>{
+    if(confirm('정말 수정하시겠습니까?') === false) {
+      event.preventDefault();
+    } else {
+      const upBookStatusOptionsIndex = upBookStatus.options.selectedIndex;
+      const upBookStatusText = upBookStatus.options[upBookStatusOptionsIndex].textContent;
 
-    bookNoteStorageArr.forEach(list => {
-      if(list.id === parseInt(div.id)) {
-        list.bookNameValue = upBookName.value;
-        list.bookStatusValue = upBookStatusText;
-        list.booMemoValue = upBookMemo.value;
-        list.bookDateValue = upBookDate.value;
-      }
-    });
-    setBookNote();
-    location.href = '#close';
+      bookNoteStorageArr.forEach(list => {
+        if(list.id === parseInt(div.id)) {
+          list.bookNameValue = upBookName.value;
+          list.bookStatusValue = upBookStatusText;
+          list.booMemoValue = upBookMemo.value;
+          list.bookDateValue = upBookDate.value;
+        }
+      });
+      setBookNote();
+      location.href = '#close';
+    }
   });
 }
 
