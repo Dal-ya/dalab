@@ -105,7 +105,7 @@ function updateBookNote(event) {
   const upBookStatus = document.getElementById('update_book_status');
   const upBookMemo = document.getElementById('update_book_memo');
   const upBookDate = document.getElementById('update_book_date');
-  
+
   const statusObj = {
     완독: 'completion',
     읽는중: 'reding',
@@ -129,27 +129,22 @@ function updateBookNote(event) {
   upBookDate.value = div.childNodes[4].textContent;
 
   updateCloseBtn.addEventListener('click', () => location.href = '#close');
-  updateBookForm.addEventListener('submit', (event)=>{
-    event.preventDefault();
+
+  updateBookForm.addEventListener('submit', ()=>{
+    const upBookStatusOptionsIndex = upBookStatus.options.selectedIndex;
+    const upBookStatusText = upBookStatus.options[upBookStatusOptionsIndex].textContent;
+
     bookNoteStorageArr.forEach(list => {
       if(list.id === parseInt(div.id)) {
-        bookNoteStorageArr[parseInt(div.id)-1].bookNameValue = upBookName.value;
-        //bookstatus 한글로 나올 수 있게 수정하기
-        bookNoteStorageArr[parseInt(div.id)-1].bookStatusValue = upBookStatus.value;
-        bookNoteStorageArr[parseInt(div.id)-1].booMemoValue = upBookMemo.value;
-        bookNoteStorageArr[parseInt(div.id)-1].bookDateValue = upBookDate.value;
+        list.bookNameValue = upBookName.value;
+        list.bookStatusValue = upBookStatusText;
+        list.booMemoValue = upBookMemo.value;
+        list.bookDateValue = upBookDate.value;
       }
     });
     setBookNote();
+    location.href = '#close';
   });
-
-  // bookNoteStorageArr.forEach(obj => {
-  //   if(obj.id === 2){
-  //         bookNoteStorageArr[1].bookNameValue = 'hello';
-  //     bookNoteStorageArr[1].bookStatusValue = '읽는중';
-  //     }
-  // });
-  // setBookNote();
 }
 
 
